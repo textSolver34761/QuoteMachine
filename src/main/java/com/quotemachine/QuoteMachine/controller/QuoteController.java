@@ -16,10 +16,12 @@ public class QuoteController {
 	
 	List<Quotes> quoteList = new ArrayList<Quotes>();
 	
-	@GetMapping("/")	
+	@GetMapping("/")
 	public String showForm(Model model) {
 		Quotes quotes = new Quotes();
+		System.out.println(quotes);
 		model.addAttribute("Quotes", quotes);
+		System.out.println("Model Att" + quotes);
 		quotes.setAuthor("");
 		quotes.setQuote("");
 		return "index";

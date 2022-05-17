@@ -6,21 +6,14 @@
 	<title>Quote Machine</title>
 	</head>
 	<body>
-		<form action="/" method="post" th:object=${Quotes}>
+		<form action="#" th:action="@{/}" method="post" th:object=${Quotes}>
 			<label>Author</label>
-			<input type="text" id="author" th:field="*{author}">
+			<input type="text" id="author" th:field="*{author}" />
 			<label>Quote</label>
-			<input type="text" id="quote" th:field="*{quote}">
+			<input type="text" id="quote" th:field="*{quote}" />
 			<button type="submit">Valider</button>
 		</form>
 		<!-- th:if="${quoteList.lengh() < 1 }" -->
-		<table>
-		   <th:block th:each="lst : ${quoteList}">
-		      <tr>
-		         <td th:text="${lst.author}"></td>
-		         <td th:text="${lst.quote}">...</td>
-		      </tr>
-		   </th:block>
-		</table>
+		<span th:text="${Quotes.author}"></span> once said <span th:text="${Quotes.quote}"></span>
 	</body>
 </html>
