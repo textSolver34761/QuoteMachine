@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 	<head>
 	<meta charset="ISO-8859-1">
-	<title></title>
+	<title>Quote Machine</title>
 	</head>
 	<body>
-		<form action="">
+		<form action="/" method="post" th:object=${Quotes}>
 			<label>Author</label>
-			<input type="text" id="author">
+			<input type="text" id="author" th:field="*{author}">
 			<label>Quote</label>
-			<input type="text" id="quote">
+			<input type="text" id="quote" th:field="*{quote}">
 			<button type="submit">Valider</button>
 		</form>
 	</body>
