@@ -1,36 +1,32 @@
 package com.quotemachine.QuoteMachine.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.quotemachine.QuoteMachine.model.Quotes;
+import com.quotemachine.QuoteMachine.repo.QuoteMachineRepo;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class QuoteController {
+
+	@Autowired
+	QuoteMachineRepo repo;
 	
-	List<Quotes> quoteList = new ArrayList<Quotes>();
-	
-	@GetMapping("/")
-	public String showForm(Model model) {
-		Quotes quotes = new Quotes();
-		System.out.println(quotes);
-		model.addAttribute("Quotes", quotes);
-		System.out.println("Model Att" + quotes);
-		quotes.setAuthor("");
-		quotes.setQuote("");
-		return "index";
+	@GetMapping("/quotes")
+	public List<Quotes>getQuotes(){
+		return (List<Quotes>) repo.findAll();
 	}
 	
-	@PostMapping("/")
-	public String display(@ModelAttribute("Quotes") Quotes quotes) {
-		quoteList.add(quotes);
-		System.out.println("LIST " + quotes);
-		return "index";
+	@PostMapping("/quotes")
+	public Quotes save(@RequestBody Quotes quotes){
+		return repo.save(quotes);
 	}
+	
 }
