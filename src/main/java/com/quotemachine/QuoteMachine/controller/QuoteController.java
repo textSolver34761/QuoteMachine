@@ -19,12 +19,12 @@ public class QuoteController {
 	@Autowired
 	QuoteMachineRepo repo;
 	
-	@GetMapping("/quotes")
+	@PostMapping("/quotes")
 	public List<Quotes>getQuotes(){
 		return (List<Quotes>) repo.findAll();
 	}
 	
-	@PostMapping("/quotes")
+	@GetMapping("/quotes")
 	public Quotes save(@RequestBody Quotes quotes){
 		return repo.save(quotes);
 	}
