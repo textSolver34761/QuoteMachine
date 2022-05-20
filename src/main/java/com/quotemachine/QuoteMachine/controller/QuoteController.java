@@ -24,7 +24,7 @@ public class QuoteController {
 		return (List<Quotes>) repo.findAll();
 	}
 	
-	@GetMapping("/quotes")
+	@GetMapping("/save-quotes")
 	public Quotes save(@RequestBody Quotes quotes){
 		return repo.save(quotes);
 	}
